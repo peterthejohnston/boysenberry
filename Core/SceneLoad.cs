@@ -15,23 +15,22 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Engine
 {
-	class SceneLoad
-	{
-		public List<Actor> actors;
-		public Texture2D background;
-		public int width, height;
-		public View view;
-		public Game game;
+    class SceneLoad
+    {
+        public List<Actor> actors;
+        public Texture2D background;
+        public int width, height;
+        public View view;
+        public Game game;
 
-		public SceneLoad(List<Actor> actors, Texture2D background, int width, int height, View view, Game game)
-		{
-			this.actors = actors;
-			this.background = background;
-			this.width = width;
-			this.height = height;
-			this.view = view;
-			this.game = game;
-		}
-	}
+        public SceneLoad(List<Actor> actors, Texture2D background, int width, int height, View view, Game game)
+        {
+            this.actors = actors;
+            this.background = background;
+            this.width = width;
+            this.height = height;
+            this.view = view;
+            this.game = game;
+        }
+    }
 }
-

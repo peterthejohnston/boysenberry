@@ -27,7 +27,7 @@ namespace Engine
             set
             {
                 _mask = value;
-				_mask.origin = origin;
+                _mask.origin = origin;
             }
         }*/
         public int frames = 1;
@@ -35,17 +35,17 @@ namespace Engine
         public float speed;
         public Color color = Color.White;
         public float rotation;
-		public float xscale = 1f;
-		public float yscale = 1f;
+        public float xscale = 1f;
+        public float yscale = 1f;
         public float scale
-		{
-			set
-			{
-				xscale = value;
-				yscale = value;
-			}
-		}
-		public float alpha = 1f;
+        {
+            set
+            {
+                xscale = value;
+                yscale = value;
+            }
+        }
+        public float alpha = 1f;
 
         public float currentFrame = 0;
 
@@ -64,7 +64,7 @@ namespace Engine
             this.sprite = sprite;
             this.speed = speed;
             this.frames = frames;
-			framewidth = this.sprite.Width / frames;
+            framewidth = this.sprite.Width / frames;
         }
         public Sprite(Texture2D sprite, float speed, int framewidth, int frames)
         {
@@ -73,19 +73,19 @@ namespace Engine
             this.framewidth = framewidth;
             if (frames < 0)
                 this.frames = this.sprite.Width / framewidth + frames;
-			else this.frames = frames;
+            else this.frames = frames;
         }
 
         #endregion
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-			// vv ???
+            // vv ???
             position.X = (float)Math.Round(position.X);
             position.Y = (float)Math.Round(position.Y);
-			spriteBatch.Draw(sprite, new Vector2((float)Math.Round(position.X), (float)Math.Round(position.Y)),
-				new Rectangle(framewidth * (int)Math.Floor((double)currentFrame), 0, framewidth, height), color * alpha,
-				(float)(((double)rotation) * Math.PI / 180), origin, new Vector2(xscale, yscale), SpriteEffects.None, 0);
+            spriteBatch.Draw(sprite, new Vector2((float)Math.Round(position.X), (float)Math.Round(position.Y)),
+                new Rectangle(framewidth * (int)Math.Floor((double)currentFrame), 0, framewidth, height), color * alpha,
+                (float)(((double)rotation) * Math.PI / 180), origin, new Vector2(xscale, yscale), SpriteEffects.None, 0);
         }
 
         public void Update()

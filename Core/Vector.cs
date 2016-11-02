@@ -17,10 +17,10 @@ namespace Engine
             rememberSpeed = 0;
         }
 
-		public static Vector makeVector2(Vector2 v)
-		{
-			return new Vector(v.X, v.Y);
-		}
+        public static Vector makeVector2(Vector2 v)
+        {
+            return new Vector(v.X, v.Y);
+        }
 
         public static Vector makeXY(float x, float y)
         {
@@ -66,11 +66,11 @@ namespace Engine
             {
                 /*if (speed != 0)
                     return (float)((180 / Math.PI) * Math.Atan2(-motion.Y, motion.X));*/
-				if (speed != 0)
-				{
-					float val = (float)((180 / Math.PI) * Math.Atan2(motion.Y, -motion.X) + 180);
-					return (val < 360) ? val : val - 360;
-				}
+                if (speed != 0)
+                {
+                    float val = (float)((180 / Math.PI) * Math.Atan2(motion.Y, -motion.X) + 180);
+                    return (val < 360) ? val : val - 360;
+                }
                 return rememberDir;
             }
             set

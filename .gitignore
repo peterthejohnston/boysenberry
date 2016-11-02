@@ -1,0 +1,7 @@
+Assets/
+Engine.csproj
+Info.plist
+Properties/
+bin/
+obj/
+packages/

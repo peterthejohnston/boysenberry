@@ -15,59 +15,58 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Engine
 {
-	public class Pause : Actor
-	{
-		private int fadeTime;
-		private int maxfadeTime;
-		private bool fading;
-		private Sprite resumeSprite;
+    public class Pause : Actor
+    {
+        private int fadeTime;
+        private int maxfadeTime;
+        private bool fading;
+        private Sprite resumeSprite;
 
-		public Pause(float x, float y, Game game)
-			: base(x, y, -3, game)
-		{
-		}
+        public Pause(float x, float y, Game game)
+            : base(x, y, -3, game)
+        {
+        }
 
-		public override void Initialize()
-		{
-			fadeTime = 40;
-			maxfadeTime = 40;
+        public override void Initialize()
+        {
+            fadeTime = 40;
+            maxfadeTime = 40;
 
-			sprite = new Sprite(game.Content.Load<Texture2D>("pause"));
-			resumeSprite = new Sprite(game.Content.Load<Texture2D>("resume"));
+            sprite = new Sprite(game.Content.Load<Texture2D>("pause"));
+            resumeSprite = new Sprite(game.Content.Load<Texture2D>("resume"));
 
-			base.Initialize();
-		}
+            base.Initialize();
+        }
 
-		public override void Update()
-		{
-			if (game.keyState.IsKeyDown(Keys.P) && game.keyOldState.IsKeyUp(Keys.P) && !fading)
-				game.currentScene.Unpause();
-			if (game.keyState.IsKeyDown(Keys.R) && game.keyOldState.IsKeyUp(Keys.R))
-			{
-				game.currentScene.Unpause();
-				game.currentScene.Restart();
-			}
+        public override void Update()
+        {
+            if (game.keyState.IsKeyDown(Keys.P) && game.keyOldState.IsKeyUp(Keys.P) && !fading)
+                game.currentScene.Unpause();
+            if (game.keyState.IsKeyDown(Keys.R) && game.keyOldState.IsKeyUp(Keys.R))
+            {
+                game.currentScene.Unpause();
+                game.currentScene.Restart();
+            }
 
-			if (fading)
-			{
-				fadeTime -= 1;
-				if (fadeTime == 0)
-					game.currentScene.DeleteActor(this);
+            if (fading)
+            {
+                fadeTime -= 1;
+                if (fadeTime == 0)
+                    game.currentScene.DeleteActor(this);
 
-				sprite.alpha = (float)fadeTime / (float)maxfadeTime;
+                sprite.alpha = (float)fadeTime / (float)maxfadeTime;
 
-				x = game.currentScene.view.x;
-				y = game.currentScene.view.y;
-			}
+                x = game.currentScene.view.x;
+                y = game.currentScene.view.y;
+            }
 
-			base.Update();
-		}
+            base.Update();
+        }
 
-		public void Fade()
-		{
-			fading = true;
-			sprite = resumeSprite;
-		}
-	}
+        public void Fade()
+        {
+            fading = true;
+            sprite = resumeSprite;
+        }
+    }
 }
-

@@ -8,20 +8,20 @@ namespace Engine
 {
     public class View
     {
-		public View(int width, int height, Game game)
+        public View(int width, int height, Game game)
         {
             this.width = width;
             this.height = height;
-			this.game = game;
+            this.game = game;
         }
 
         public int width, height;
-		private Game game;
+        private Game game;
 
         private Vector2 m_position = Vector2.Zero;
-		public Matrix Transform {
-			get { return Matrix.CreateRotationZ(0) * Matrix.CreateScale(1f) * Matrix.CreateTranslation(-x, -y, 0); }
-		}
+        public Matrix Transform {
+            get { return Matrix.CreateRotationZ(0) * Matrix.CreateScale(1f) * Matrix.CreateTranslation(-x, -y, 0); }
+        }
 
         public Vector2 position
         {
@@ -74,8 +74,8 @@ namespace Engine
             if (follow != null)
                 position = new Vector2(follow.x - width / 2, follow.y - height / 2);
 
-			// x = Math.Max(0, x);
-			y = MathHelper.Clamp(y, 0, game.currentScene.height - height);
+            // x = Math.Max(0, x);
+            y = MathHelper.Clamp(y, 0, game.currentScene.height - height);
         }
 
         private Actor follow;

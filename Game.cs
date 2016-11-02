@@ -24,135 +24,135 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Engine
 {
-	/// <summary>
-	/// Default Project Template
-	/// </summary>
-	public class Game : Microsoft.Xna.Framework.Game
-	{
-		#region Fields
+    /// <summary>
+    /// Default Project Template
+    /// </summary>
+    public class Game : Microsoft.Xna.Framework.Game
+    {
+        #region Fields
 
-		public GraphicsDeviceManager graphics;
-		public SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
 
-		public KeyboardState keyState, keyOldState;
-		public MouseState mouseState, mouseOldState;
-		public GameTime gameTime;
-		public int timer;
-		public Random rand = new Random();
-		public SpriteFont font;
+        public KeyboardState keyState, keyOldState;
+        public MouseState mouseState, mouseOldState;
+        public GameTime gameTime;
+        public int timer;
+        public Random rand = new Random();
+        public SpriteFont font;
 
-		#endregion
+        #endregion
 
-		#region Scenes
+        #region Scenes
 
-		private Scene _currentScene;
-		public Scene currentScene
-		{
-			get { return _currentScene; }
-			set
-			{
-				if (currentScene != null)
-				{
-					foreach (SoundEffectInstance s in currentScene.sounds)
-					{
-						s.Stop();
-					}
-				}
+        private Scene _currentScene;
+        public Scene currentScene
+        {
+            get { return _currentScene; }
+            set
+            {
+                if (currentScene != null)
+                {
+                    foreach (SoundEffectInstance s in currentScene.sounds)
+                    {
+                        s.Stop();
+                    }
+                }
 
-				_currentScene = value;
+                _currentScene = value;
 
-				graphics.PreferredBackBufferWidth = value.view.width;
-				graphics.PreferredBackBufferHeight = value.view.height;
-				// graphics.ApplyChanges();
+                graphics.PreferredBackBufferWidth = value.view.width;
+                graphics.PreferredBackBufferHeight = value.view.height;
+                // graphics.ApplyChanges();
 
-				currentScene.SceneStart();
-			}
-		}
+                currentScene.SceneStart();
+            }
+        }
 
-		public List<Scene> scenes = new List<Scene>();
-		public Scene mainScene;
+        public List<Scene> scenes = new List<Scene>();
+        public Scene mainScene;
 
-		public void NextScene()
-		{
-			if (!currentScene.displayTextbox)
-				currentScene = scenes[scenes.IndexOf(currentScene, 0) + 1];
-			else
-				currentScene.tryNextScene = true;
-		}
-		public void SetScene(Scene scene)
-		{
-			currentScene = scenes[scenes.IndexOf(scene)];
-		}
+        public void NextScene()
+        {
+            if (!currentScene.displayTextbox)
+                currentScene = scenes[scenes.IndexOf(currentScene, 0) + 1];
+            else
+                currentScene.tryNextScene = true;
+        }
+        public void SetScene(Scene scene)
+        {
+            currentScene = scenes[scenes.IndexOf(scene)];
+        }
 
-		#endregion
+        #endregion
 
-		#region Initialization
+        #region Initialization
 
-		public Game()
-		{
-			graphics = new GraphicsDeviceManager(this);
+        public Game()
+        {
+            graphics = new GraphicsDeviceManager(this);
 
-			Content.RootDirectory = "Assets";
+            Content.RootDirectory = "Assets";
 
-			graphics.IsFullScreen = false;
-		}
+            graphics.IsFullScreen = false;
+        }
 
-		protected override void Initialize()
-		{
-			base.Initialize();
-		}
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
 
-		protected override void LoadContent()
-		{
-			// Create a new SpriteBatch, which can be use to draw textures.
-			spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
+        protected override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be use to draw textures.
+            spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
 
-			IsMouseVisible = true;
+            IsMouseVisible = true;
 
-			graphics.PreferredBackBufferWidth = 640;
-			graphics.PreferredBackBufferHeight = 480;
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
 
-			/*mainScene = new Scene();
-			mainScene.Load(640, 480, this);
-			scenes.Add(mainScene);
-			currentScene = mainScene;*/
-		}
+            /*mainScene = new Scene();
+            mainScene.Load(640, 480, this);
+            scenes.Add(mainScene);
+            currentScene = mainScene;*/
+        }
 
-		#endregion
+        #endregion
 
-		#region Update and Draw
+        #region Update and Draw
 
-		protected override void Update(GameTime gameTime)
-		{
-			this.gameTime = gameTime;
-			keyState = Keyboard.GetState();
-			mouseState = Mouse.GetState();
+        protected override void Update(GameTime gameTime)
+        {
+            this.gameTime = gameTime;
+            keyState = Keyboard.GetState();
+            mouseState = Mouse.GetState();
 
-			if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-				this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
 
-			if (currentScene != null)
-				currentScene.Update(gameTime);
+            if (currentScene != null)
+                currentScene.Update(gameTime);
 
-			++timer;
+            ++timer;
 
-			keyOldState = keyState;
-			mouseOldState = mouseState;
+            keyOldState = keyState;
+            mouseOldState = mouseState;
 
-			base.Update(gameTime);
-		}
+            base.Update(gameTime);
+        }
 
-		protected override void Draw(GameTime gameTime)
-		{
-			// Clear the backbuffer
-			graphics.GraphicsDevice.Clear(Color.White);
+        protected override void Draw(GameTime gameTime)
+        {
+            // Clear the backbuffer
+            graphics.GraphicsDevice.Clear(Color.Black);
 
-			if (currentScene != null)
-				currentScene.Draw();
+            if (currentScene != null)
+                currentScene.Draw();
 
-			base.Draw(gameTime);
-		}
+            base.Draw(gameTime);
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }
